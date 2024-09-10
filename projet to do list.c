@@ -136,9 +136,9 @@ int main()
 		                    }else if(info[j].deadline.m==2){
 		                        jours=28;
 		                    }
-		                    deadlinejj=info[j].deadline.a*365+info[j].deadline.m*12+info[j].deadline.j*jours;
-	                        deadlinej=info[j].deadline.a*365+info[j].deadline.m*jours+info[j].deadline.j*24+info[j].deadline.h*60+info[j].deadline.min*;
-	                        deadlinej1=info[j+1].deadline.a*365+info[j+1].deadline.m*jours+info[j+1].deadline.j*24+info[j+1].deadline.h*60+info[j+1].deadline.min;
+		                    deadlinejj=info[j].deadline.a*365+info[j].deadline.m*jours+info[j].deadline.j;
+	                        deadlinej=info[j].deadline.a*365+info[j].deadline.m*jours+info[j].deadline.j*24+info[j].deadline.h*60+info[j].deadline.min;
+	                        deadlinej1=info[j+1].deadline.a*365+info[j+1].deadline.m*jours+info[j+1].deadline.j*24+info[j+1].deadline.h*60+info[j+1].deadline.min*60;
 	                        if(deadlinej> deadlinej1){
 		                        tache temp=info[j];
 		                        info[j]=info[j+1];
