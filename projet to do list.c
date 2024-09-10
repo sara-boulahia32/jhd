@@ -41,7 +41,7 @@ int main()
 	int year = local_time->tm_year + 1900;
     int month = local_time->tm_mon + 1;
     int day = local_time->tm_mday;
-	long tempsActuel=year*365+month*12+day*jours;
+	long tempsActuel=year*365+month*jours+day;
 	long minuteur;
     do{
         printf("________________________________________________________________________________________________________________________\n");
@@ -137,8 +137,8 @@ int main()
 		                        jours=28;
 		                    }
 		                    deadlinejj=info[j].deadline.a*365+info[j].deadline.m*12+info[j].deadline.j*jours;
-	                        deadlinej=info[j].deadline.a*365+info[j].deadline.m*12+info[j].deadline.j*jours+info[j].deadline.h*24+info[j].deadline.min*60;
-	                        deadlinej1=info[j+1].deadline.a*365+info[j+1].deadline.m*12+info[j+1].deadline.j*jours+info[j+1].deadline.h*24+info[j+1].deadline.min*60;
+	                        deadlinej=info[j].deadline.a*365+info[j].deadline.m*jours+info[j].deadline.j*24+info[j].deadline.h*60+info[j].deadline.min*;
+	                        deadlinej1=info[j+1].deadline.a*365+info[j+1].deadline.m*jours+info[j+1].deadline.j*24+info[j+1].deadline.h*60+info[j+1].deadline.min;
 	                        if(deadlinej> deadlinej1){
 		                        tache temp=info[j];
 		                        info[j]=info[j+1];
@@ -155,7 +155,7 @@ int main()
 		        if (choixAffichage==3){
 		            printf("____________________________________________TRI DEADLINE DANS 3 JOURS_________________________________________________________\n\n\n");
 		            for(i=0; i<compteur; i++){
-		                deadlinejj=info[j].deadline.a*365+info[j].deadline.m*12+info[j].deadline.j*jours;
+		                deadlinejj=info[j].deadline.a*365+info[j].deadline.m*jours+info[j].deadline.j;
 		                minuteur=deadlinejj-tempsActuel;
 		                if(minuteur<=3){
 		                printf("  ||  %s  ||  %s  ||  %s  ||  %d/%d/%d - %d:%d  ||  %d  ||\n", info[i].id, info[i].titre, info[i].description, info[i].deadline.j, info[i].deadline.m, info[i].deadline.a, info[i].deadline.h, info[i].deadline.min, info[i].st+1);
