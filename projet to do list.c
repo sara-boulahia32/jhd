@@ -83,24 +83,25 @@ int main()
 		            strcpy(info[i + compteur].id, idEntree);
 		            printf("entrez le titre de la tache  :   ");
 		            scanf(" %[^\n]s", info[i+compteur].titre);
-		            printf("entrez une description � la tache  :   ");
+		            printf("entrez une description a la tache  :   ");
 		            scanf(" %[^\n]s", info[i+compteur].description);
 		            printf("entrez le statut de la tache  :   ");
 		            do{
-		                printf("\n1 - � r�aliser.");
+		                printf("\n1 - a realiser.");
 		                printf("                      2 - en cours de r�alisation.\n");
 		                printf("3 - finalisee.");
 		                scanf("%d", &etat);
 		            }while(etat>3 || etat<1);
 		            info[compteur+i].st=etat-1;
-		            printf("Deadline(� quand est elle due?) format(JJ/MM/AA)  :   ");
+		            printf("Deadline( quand est elle due?) format(JJ/MM/AA)  :   ");
 		            scanf("%d/%d/%d", &info[i+compteur].deadline.j, &info[i+compteur].deadline.m, &info[i+compteur].deadline.a);
 		            printf("a quelle heure est elle due format(hh:mm)  :   ");
 		            scanf("%d:%d", &info[i+compteur].deadline.h, &info[i+compteur].deadline.min);
-		            compteur+=n;
+		            
 		        }
+			compteur+=n;
 		    } else {
-                printf("La liste est pleine.\n");
+                	printf("La liste est pleine.\n");
 		    }
 		    break;
 		}
@@ -109,8 +110,8 @@ int main()
 		    case 3:
 		    printf("________________________________________________________________________________________________________________________\n");
 		    printf("________________________________________________SOUS-MENU_______________________________________________________________\n\n\n");
-		    printf("1 - Trier les t�ches par ordre alphab�tique.                     2 - Trier les t�ches par deadline.\n\n");
-		    printf("3 - Afficher les t�ches dont le deadline est dans 3 jours ou moins\n\n");
+		    printf("1 - Trier les taches par ordre alphabatique.                     2 - Trier les t�ches par deadline.\n\n");
+		    printf("3 - Afficher les taches dont le deadline est dans 3 jours ou moins\n\n");
 		    scanf("%d", &choixAffichage);
 		    printf("\n");
 		    if(choixAffichage==1 || choixAffichage==2){
@@ -171,8 +172,8 @@ int main()
 		        printf("_______________________________________________MODIFIER UNE TACHE____________________________________________________________\n\n\n");
 		        printf("________________________________________________________________________________________________________________________\n");
 		        printf("____________________________________________________SOUS-MENU________________________________________________________________\n\n\n");
-		        printf("1 - Modifier la description d'une t�che.         2 - Modifier le statut d�une t�che.\n\n");
-		        printf("3 - Modifier le deadline d�une t�che.\n\n");
+		        printf("1 - Modifier la description d'une tache.         2 - Modifier le statut dune tache.\n\n");
+		        printf("3 - Modifier le deadline d une tache.\n\n");
 		        scanf("%d", &choixModifier);
 		    }while(choixModifier<1 || choixModifier>3);
 		    switch(choixModifier){
@@ -182,7 +183,8 @@ int main()
 		                switch (choixModifier){
 		                    case 1:
 		                    printf("_____________________________________MODIFIER DESCRIPTION DE TACHE_______________________________________________________\n\n\n");
-		                    printf("entrez l'identifiant de la tache � modifier : ");
+		                    printf("entrez l'identifiant de la tache  modifier : ");
+					getchar();
 		                    scanf(" %s", identifiantModifier);
 		                    for(i=0; i<compteur; i++){
 		                        if(strcmp(info[i].id, identifiantModifier)==0){
@@ -202,29 +204,30 @@ int main()
 		                        if(strcmp(info[i].id, identifiantModifier)==0){
 		                            printf("entrez nouveau statut\n");
 		                            do{
-		                               printf("\n1 - � r�aliser.          2 - en cours de r�alisation.\n");
+		                               printf("\n1 - a realiser.          2 - en cours de realisation.\n");
 		                               printf("3 - finalisee.");
 		                               scanf("%d", &nvStatut);
 		                            }while(nvStatut<1||nvStatut>3);
-		                            info[i].st=nvStatut;
+		                            info[i].st=nvStatut-1;
 		                            trouve=1;
-		                        }
-		                        if(trouve) {
-                                    printf("statut de la tache %d est modifiee avec succes\n", i+1);
-                                } else {
+						printf("statut de la tache %d est modifiee avec succes\n", i+1);
+		                        break;
+					}
+				    }
+		                         if(!trouve){
                                     printf("tache introuvable\n");
-                                }
+                                
 		                    }
 		                    break;
 		                    case 3:
 		                    trouve=0;
 		                    printf("_______________________________________MODIFIER DEADLINE DE TACHE________________________________________________________\n\n\n");
-		                    printf("entrez l'identifiant de la tache � modifier : ");
+		                    printf("entrez l'identifiant de la tache a modifier : ");
 		                    scanf(" %s", identifiantModifier);
 		                    for(i=0; i<compteur; i++){
 		                        if(strcmp(info[i].id, identifiantModifier)==0){
 		                            printf("entrez nouveau deadline\n");
-		                            printf("Deadline(� quand est elle due?) format(JJ/MM/AA)  :   ");
+		                            printf("Deadline( quand est elle due?) format(JJ/MM/AA)  :   ");
 		                            scanf(" %d/%d/%d", &nvJ, &nvM, &nvA);
 		                            printf("a quelle heure est elle due format(hh:mm)  :   ");
 		                            scanf(" %d:%d", &nvH, &nvMin);
@@ -249,59 +252,77 @@ int main()
 		    }
 		    break;
 		    case 5:
-
+			choixSupprimerr[4];
 		    printf("_______________________________________________SUPPRIMER UNE TACHE___________________________________________________________\n\n\n");
 		    printf("entrez l'identifiant de la tache  :  ");
 		    scanf("%[^\n]s", identifiantSupprimer);
-		    int trouve=0;
+		    trouve=0;
 		    for(i=0; i<compteur; i++){
 		        if(strcmp(info[i].id, identifiantSupprimer)==0){
-		            for(j=i; j<compteur-1; j++){
-		                info[j] = info[j+1];
-		            }
-		            trouve=1;
-		            compteur--;
+				trouve=1;		            
+				printf("etes vous sure de vouloir supprimer %s? (oui/non) : ", identifiantSupprimer);
+				scanf("%s", choixSupprimerr);
+				if(choixSupprimerr=='oui'){
+					for(j=i; j<compteur-1; j++){
+		                		info[j] = info[j+1];
+		            		}
+				printf("tache supprimee avec succes.\n");
+				
+				compteur--;
+				}
+				if(choixSupprimerr=='non')
+				printf("tache non supprimee.\n");
+				break;
+		            
+		            
 		            break;
 		        }
-		        if(trouve){
-		            printf("tache supprimee avec succes.\n");
-		        }else{
+		          
+		        }
+			    if(!trouve){
 		            printf("tache introuvable\n");
 		        }
-		    }
+		    
 		    break;
 		    case 6:
 		    do{
 		        printf("______________________________________________RECHERCHER DES TACHES__________________________________________________________\n\n\n");
 		        printf("________________________________________________________________________________________________________________________\n");
 		        printf("____________________________________________________SOUS-MENU________________________________________________________________\n\n\n");
-		        printf("1 - Rechercher une t�che par son Identifiant.              2 - Rechercher une t�che par son Titre\n\n");
+		        printf("1 - Rechercher une tache par son Identifiant.              2 - Rechercher une tache par son Titre\n\n");
 		        scanf("%d", &choixRechercher);
-		    }while(choixModifier>=1||choixModifier<=3);
+		    }while(choixModifier<1||choixModifier>3);
+			    trouve=0;
 		    switch(choixRechercher){
 		        case 1:
 		        printf("___________________________________________AFFICHAGE DES TACHES PAR ID______________________________________________________\n\n\n");
 		        printf("entrez l'Identifiant de la tache  :  ");
 		        scanf(" %[^\n]s", identifiantRecherche);
-		        printf("  || identifiant  ||  titre  ||  desciption  ||  deadline  ||  statut  ||\n");
 		        for(i=0; i<compteur; i++){
 		            if(strcmp(info[i].id, identifiantRecherche)==0){
+		        	printf("  || identifiant  ||  titre  ||  desciption  ||  deadline  ||  statut  ||\n");
 		                printf("  || %s  ||  %s  ||  %s  ||  %d/%d/%d - %d:%d  ||  %d  ||\n", info[i].id, info[i].titre, info[i].description, info[i].deadline.j, info[i].deadline.m, info[i].deadline.a, info[i].deadline.h, info[i].deadline.min, info[i].st+1);
-		            }
+		            trouve=1;
+			    break;
+			    }
 		        }
 		        break;
 		        case 2:
 		        printf("___________________________________________AFFICHAGE DES TACHES PAR TITRES__________________________________________________\n\n\n");
 		        printf("entrez le titre de la tache  :  ");
+				getchar();
 		        scanf(" %[^\n]s", titreRecherche);
-		        printf("  || identifiant  ||  titre  ||  desciption  ||  deadline  ||  statut  ||\n");
 		        for(i=0; i<compteur; i++){
 		            if(strcmp(info[i].titre, titreRecherche)==0){
+				printf("  || identifiant  ||  titre  ||  desciption  ||  deadline  ||  statut  ||\n");
 		                printf("  || %s  ||  %s  ||  %s  ||  %d/%d/%d - %d:%d  ||  %d  ||\n", info[i].id, info[i].titre, info[i].description, info[i].deadline.j, info[i].deadline.m, info[i].deadline.a, info[i].deadline.h, info[i].deadline.min, info[i].st+1);
-		            }
+		            trouve=1;
+			    }
 		        }
-		        break;
 		    }
+			    if (!trouve) {
+				    printf("Tache introuvable.\n");
+			    }
 		    break;
 		    case 7:
 		    printf("_________________________________________________STATISTIQUES________________________________________________________________\n\n\n");
