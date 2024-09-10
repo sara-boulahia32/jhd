@@ -5,8 +5,8 @@
 #include <stdlib.h>
 
 enum statut {
-    aRealiser, 
-    enCoursDeRealisation, 
+    aRealiser,
+    enCoursDeRealisation,
     finalisee
 };
 typedef struct{
@@ -30,8 +30,9 @@ int compteur=0;
 
 int main()
 {
+
     int choix, etat, n, i, j;
-    int choixAffichage, jours, trouve; 
+    int choixAffichage, jours, trouve;
     char identifiantModifier[10], nvDescription[50], identifiantSupprimer[10], titreRecherche[20], identifiantRecherche[10];
     int nvStatut, nvJ, nvM, nvA, nvH, nvMin, choixModifier, choixRechercher, choixStatistique, choixExit, complete, incomplete;
     long deadlinejj, deadlinej, deadlinej1;
@@ -82,20 +83,20 @@ int main()
 		            strcpy(info[i + compteur].id, idEntree);
 		            printf("entrez le titre de la tache  :   ");
 		            scanf(" %[^\n]s", info[i+compteur].titre);
-		            printf("entrez une description à la tache  :   ");
+		            printf("entrez une description � la tache  :   ");
 		            scanf(" %[^\n]s", info[i+compteur].description);
 		            printf("entrez le statut de la tache  :   ");
 		            do{
-		                printf("\n1 - à réaliser.");
-		                printf("                      2 - en cours de réalisation.\n");
+		                printf("\n1 - � r�aliser.");
+		                printf("                      2 - en cours de r�alisation.\n");
 		                printf("3 - finalisee.");
 		                scanf("%d", &etat);
 		            }while(etat>3 || etat<1);
 		            info[compteur+i].st=etat-1;
-		            printf("Deadline(à quand est elle due?) format(JJ/MM/AA)  :   ");
-		            scanf(" %d/%d/%d", &info[i+compteur].deadline.j, &info[i+compteur].deadline.m, &info[i+compteur].deadline.a);
+		            printf("Deadline(� quand est elle due?) format(JJ/MM/AA)  :   ");
+		            scanf("%d/%d/%d", &info[i+compteur].deadline.j, &info[i+compteur].deadline.m, &info[i+compteur].deadline.a);
 		            printf("a quelle heure est elle due format(hh:mm)  :   ");
-		            scanf(" %d:%d", &info[i+compteur].deadline.h, &info[i+compteur].deadline.min);
+		            scanf("%d:%d", &info[i+compteur].deadline.h, &info[i+compteur].deadline.min);
 		            compteur+=n;
 		        }
 		    } else {
@@ -108,8 +109,8 @@ int main()
 		    case 3:
 		    printf("________________________________________________________________________________________________________________________\n");
 		    printf("________________________________________________SOUS-MENU_______________________________________________________________\n\n\n");
-		    printf("1 - Trier les tâches par ordre alphabétique.                     2 - Trier les tâches par deadline.\n\n");
-		    printf("3 - Afficher les tâches dont le deadline est dans 3 jours ou moins\n\n");
+		    printf("1 - Trier les t�ches par ordre alphab�tique.                     2 - Trier les t�ches par deadline.\n\n");
+		    printf("3 - Afficher les t�ches dont le deadline est dans 3 jours ou moins\n\n");
 		    scanf("%d", &choixAffichage);
 		    printf("\n");
 		    if(choixAffichage==1 || choixAffichage==2){
@@ -164,13 +165,14 @@ int main()
 		        }
 		    }
 		    break;
+
 		    case 4:
 		    do{
 		        printf("_______________________________________________MODIFIER UNE TACHE____________________________________________________________\n\n\n");
 		        printf("________________________________________________________________________________________________________________________\n");
 		        printf("____________________________________________________SOUS-MENU________________________________________________________________\n\n\n");
-		        printf("1 - Modifier la description d'une tâche.         2 - Modifier le statut d’une tâche.\n\n");
-		        printf("3 - Modifier le deadline d’une tâche.\n\n");
+		        printf("1 - Modifier la description d'une t�che.         2 - Modifier le statut d�une t�che.\n\n");
+		        printf("3 - Modifier le deadline d�une t�che.\n\n");
 		        scanf("%d", &choixModifier);
 		    }while(choixModifier<1 || choixModifier>3);
 		    switch(choixModifier){
@@ -180,7 +182,7 @@ int main()
 		                switch (choixModifier){
 		                    case 1:
 		                    printf("_____________________________________MODIFIER DESCRIPTION DE TACHE_______________________________________________________\n\n\n");
-		                    printf("entrez l'identifiant de la tache à modifier : ");
+		                    printf("entrez l'identifiant de la tache � modifier : ");
 		                    scanf(" %s", identifiantModifier);
 		                    for(i=0; i<compteur; i++){
 		                        if(strcmp(info[i].id, identifiantModifier)==0){
@@ -194,13 +196,13 @@ int main()
 		                    trouve=0;
 		                    printf("_________________________________________MODIFIER STATUT DE TACHE________________________________________________________\n\n\n");
 		                    printf("description de la tache %d est modifiee avec succes\n", i+1);
-		                    printf("entrez l'identifiant de la tache à modifier : ");
+		                    printf("entrez l'identifiant de la tache � modifier : ");
 		                    scanf(" %s", identifiantModifier);
 		                    for(i=0; i<compteur; i++){
 		                        if(strcmp(info[i].id, identifiantModifier)==0){
 		                            printf("entrez nouveau statut\n");
 		                            do{
-		                               printf("\n1 - à réaliser.          2 - en cours de réalisation.\n");
+		                               printf("\n1 - � r�aliser.          2 - en cours de r�alisation.\n");
 		                               printf("3 - finalisee.");
 		                               scanf("%d", &nvStatut);
 		                            }while(nvStatut<1||nvStatut>3);
@@ -217,12 +219,12 @@ int main()
 		                    case 3:
 		                    trouve=0;
 		                    printf("_______________________________________MODIFIER DEADLINE DE TACHE________________________________________________________\n\n\n");
-		                    printf("entrez l'identifiant de la tache à modifier : ");
+		                    printf("entrez l'identifiant de la tache � modifier : ");
 		                    scanf(" %s", identifiantModifier);
 		                    for(i=0; i<compteur; i++){
 		                        if(strcmp(info[i].id, identifiantModifier)==0){
 		                            printf("entrez nouveau deadline\n");
-		                            printf("Deadline(à quand est elle due?) format(JJ/MM/AA)  :   ");
+		                            printf("Deadline(� quand est elle due?) format(JJ/MM/AA)  :   ");
 		                            scanf(" %d/%d/%d", &nvJ, &nvM, &nvA);
 		                            printf("a quelle heure est elle due format(hh:mm)  :   ");
 		                            scanf(" %d:%d", &nvH, &nvMin);
@@ -240,12 +242,14 @@ int main()
 		                        }
 		                    }
 		                    break;
+		                }
 		            }
 		            break;
+		        }
 		    }
 		    break;
 		    case 5:
-		    char identifiantSupprimer[10];
+
 		    printf("_______________________________________________SUPPRIMER UNE TACHE___________________________________________________________\n\n\n");
 		    printf("entrez l'identifiant de la tache  :  ");
 		    scanf("%[^\n]s", identifiantSupprimer);
@@ -271,7 +275,7 @@ int main()
 		        printf("______________________________________________RECHERCHER DES TACHES__________________________________________________________\n\n\n");
 		        printf("________________________________________________________________________________________________________________________\n");
 		        printf("____________________________________________________SOUS-MENU________________________________________________________________\n\n\n");
-		        printf("1 - Rechercher une tâche par son Identifiant.              2 - Rechercher une tâche par son Titre\n\n");
+		        printf("1 - Rechercher une t�che par son Identifiant.              2 - Rechercher une t�che par son Titre\n\n");
 		        scanf("%d", &choixRechercher);
 		    }while(choixModifier>=1||choixModifier<=3);
 		    switch(choixRechercher){
@@ -304,15 +308,15 @@ int main()
 		    do{
 		        printf("________________________________________________________________________________________________________________________\n");
 		        printf("____________________________________________________SOUS-MENU________________________________________________________________\n\n\n");
-		        printf("1 - Afficher le nombre total des tâches.");
-		        printf("                                             2 - Afficher le nombre de tâches complètes et incomplètes..\n\n");
-		        printf("3 - Afficher le temps restants jusqu'au délai de chaque tâche.\n\n");
+		        printf("1 - Afficher le nombre total des t�ches.");
+		        printf("                                             2 - Afficher le nombre de t�ches compl�tes et incompl�tes..\n\n");
+		        printf("3 - Afficher le temps restants jusqu'au d�lai de chaque t�che.\n\n");
 		        scanf("%d", &choixStatistique);
 		    }while(choixStatistique>3||choixStatistique<1);
 		    int complete=0;
 		    int incomplete=0;
 		    switch (choixStatistique){
-		        case 1: 
+		        case 1:
 		        printf("le nombre total de taches est  %d\n", compteur);
 		        break;
 		        case 2:
@@ -333,7 +337,7 @@ int main()
 		        break;
 		        case 3:
 		        for(i=0; i<compteur; i++){
-		            printf("la tache %d il reste %ld jours avant atteindre son délai\n", i+1, minuteur);
+		            printf("la tache %d il reste %ld jours avant atteindre son d�lai\n", i+1, minuteur);
 		        }
 		        break;
 		        default:
@@ -363,6 +367,8 @@ int main()
 		printf("choix invalide. veuilllez reesayer\n");
 		break;
 		}
+
     }while(choix!=8);
-    return 0;
+
+  return 0;
 }
